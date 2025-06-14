@@ -1,0 +1,104 @@
+# TensorStream - Development Requirements
+# Additional dependencies for development, testing, and documentation
+
+# Include production requirements
+-r requirements-prod.txt
+
+# =============================================================================
+# Build Dependencies
+# =============================================================================
+
+# Python binding generation for C++/CUDA code
+pybind11[global]>=2.10.0
+
+# Fast parallel builds
+ninja>=1.10.0
+
+# =============================================================================
+# Testing Framework
+# =============================================================================
+
+# Core testing framework
+pytest>=6.2.0
+pytest-cov>=3.0.0
+pytest-xdist>=2.5.0
+pytest-mock>=3.6.0
+pytest-asyncio>=0.21.0
+
+# For integration testing with real models
+transformers>=4.20.0
+tokenizers>=0.13.0
+accelerate>=0.20.0
+safetensors>=0.3.0
+
+# =============================================================================
+# Code Quality and Formatting
+# =============================================================================
+
+# Code formatting
+black>=22.0.0
+isort>=5.10.0
+
+# Linting and static analysis
+flake8>=4.0.0
+mypy>=0.950
+
+# Pre-commit hooks
+pre-commit>=2.17.0
+
+# Runtime type checking for development
+typeguard>=2.13.0
+
+# =============================================================================
+# Documentation
+# =============================================================================
+
+# Documentation generation
+sphinx>=4.5.0
+sphinx-rtd-theme>=1.0.0
+sphinxcontrib-napoleon>=0.7
+
+# =============================================================================
+# Development Utilities
+# =============================================================================
+
+# Configuration management
+PyYAML>=6.0
+
+# Enhanced console output for development
+rich>=12.0.0
+
+# Async file operations
+aiofiles>=0.8.0
+
+# Configuration validation
+pydantic>=1.10.0
+
+# =============================================================================
+# Performance and Monitoring
+# =============================================================================
+
+# Memory profiling
+memory-profiler>=0.60.0
+
+# System information
+py-cpuinfo>=8.0.0
+
+# GPU monitoring (optional, requires NVIDIA GPU)
+# pynvml>=11.0.0
+
+# =============================================================================
+# Advanced Dependencies (Optional)
+# =============================================================================
+
+# Enhanced compression
+lz4>=4.0.0
+zstd>=1.5.0
+
+# Distributed computing (for advanced development scenarios)
+# ray>=2.0.0
+
+# For benchmarking and performance testing
+# matplotlib>=3.5.0
+# seaborn>=0.11.0
+# pandas>=1.4.0

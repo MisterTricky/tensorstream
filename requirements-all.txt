@@ -1,0 +1,74 @@
+# TensorStream - All Requirements
+# Complete set of all dependencies for all use cases
+
+# =============================================================================
+# Production Requirements
+# =============================================================================
+-r requirements-prod.txt
+
+# =============================================================================
+# Development Requirements
+# =============================================================================
+-r requirements-dev.txt
+
+# =============================================================================
+# Testing Requirements
+# =============================================================================
+-r requirements-test.txt
+
+# =============================================================================
+# Documentation Requirements
+# =============================================================================
+-r requirements-docs.txt
+
+# =============================================================================
+# Build Requirements
+# =============================================================================
+-r requirements-build.txt
+
+# =============================================================================
+# Additional Development Tools
+# =============================================================================
+
+# Advanced debugging and profiling
+line-profiler>=3.5.0
+py-spy>=0.3.0
+
+# Database tools for storing metrics
+sqlite3  # Built-in
+
+# Advanced visualization for development
+plotly>=5.10.0
+
+# For development with Docker
+# docker-compose (install separately)
+
+# For development with Kubernetes
+# kubectl (install separately)
+
+# =============================================================================
+# Optional High-Performance Dependencies
+# =============================================================================
+
+# Intel MKL optimizations (Intel CPUs)
+# mkl>=2022.0.0
+
+# NVIDIA optimizations
+# cupy-cuda11x>=10.0.0  # Requires CUDA 11.x
+
+# AMD ROCm support (AMD GPUs)
+# rocm-toolkit (install separately)
+
+# =============================================================================
+# Installation Notes
+# =============================================================================
+
+# This file installs ALL dependencies. For specific use cases:
+# - Production: pip install -r requirements-prod.txt
+# - Development: pip install -r requirements-dev.txt
+# - Testing: pip install -r requirements-test.txt
+# - Documentation: pip install -r requirements-docs.txt
+# - Building: pip install -r requirements-build.txt
+
+# Full installation:
+# pip install -r requirements-all.txt

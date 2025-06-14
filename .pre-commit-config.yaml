@@ -1,0 +1,194 @@
+# TensorStream Pre-commit Configuration
+# Install with: pre-commit install
+
+repos:
+  # =============================================================================
+  # General Code Quality
+  # =============================================================================
+  
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.md$
+      - id: end-of-file-fixer
+        exclude: \.md$
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=10000']  # 10MB limit
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: name-tests-test
+        args: ['--pytest-test-first']
+
+  # =============================================================================
+  # Python Code Formatting
+  # =============================================================================
+  
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: ['--line-length=88']
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--line-length=88"]
+
+  # =============================================================================
+  # Python Linting
+  # =============================================================================
+  
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=88', '--extend-ignore=E203,W503']
+        additional_dependencies:
+          - flake8-docstrings
+          - flake8-import-order
+          - flake8-typing-imports
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-PyYAML, types-tqdm]
+        args: [--ignore-missing-imports]
+
+  # =============================================================================
+  # Security Checks
+  # =============================================================================
+  
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ['-r', 'tensorstream/', '-f', 'json', '-o', 'bandit-report.json']
+        exclude: tests/
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+
+  # =============================================================================
+  # Documentation
+  # =============================================================================
+  
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        args: ['--convention=google']
+        exclude: ^(tests/|docs/)
+
+  # =============================================================================
+  # YAML/JSON/TOML Formatting
+  # =============================================================================
+  
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0-alpha.9-for-vscode
+    hooks:
+      - id: prettier
+        types_or: [yaml, json]
+        exclude: poetry.lock
+
+  # =============================================================================
+  # Requirements Files
+  # =============================================================================
+  
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.2
+    hooks:
+      - id: python-safety-dependencies-check
+        files: requirements.*\.txt$
+
+  # =============================================================================
+  # Spelling and Language
+  # =============================================================================
+  
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+      - id: codespell
+        args: [
+          '--ignore-words-list=nd,te,hist',
+          '--skip=*.po,*.ts,*.js,*.pyc,*.egg-info'
+        ]
+
+  # =============================================================================
+  # Custom Hooks
+  # =============================================================================
+  
+  - repo: local
+    hooks:
+      # Check for TODO/FIXME comments in production code
+      - id: no-todos-in-prod
+        name: Check for TODO/FIXME in production code
+        entry: bash -c 'if grep -r "TODO\|FIXME" tensorstream/ --exclude-dir=tests; then echo "TODO/FIXME found in production code"; exit 1; fi'
+        language: system
+        pass_filenames: false
+        
+      # Ensure test files have proper naming
+      - id: test-naming
+        name: Check test file naming
+        entry: bash -c 'find tests/ -name "*.py" -not -name "test_*.py" -not -name "__init__.py" -not -name "conftest.py" | if read -r file; then echo "Test file $file does not follow test_*.py naming"; exit 1; fi'
+        language: system
+        pass_filenames: false
+        
+      # Check for large files in git
+      - id: check-large-files-git
+        name: Check for large files in git
+        entry: bash -c 'if git ls-files | xargs ls -la | awk "\\$5 > 1048576 {print \\$9, \\$5}"; then echo "Large files found in git"; exit 1; fi'
+        language: system
+        pass_filenames: false
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+default_language_version:
+  python: python3
+
+default_stages: [commit]
+
+# Exclude patterns
+exclude: |
+  (?x)^(
+    \.git/.*|
+    \.venv/.*|
+    venv/.*|
+    build/.*|
+    dist/.*|
+    \.eggs/.*|
+    .*\.egg-info/.*|
+    __pycache__/.*|
+    \.pytest_cache/.*|
+    \.mypy_cache/.*|
+    docs/_build/.*|
+    \.po$|
+    \.pot$|
+    poetry\.lock$
+  )$
+
+# CI configuration
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+    
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

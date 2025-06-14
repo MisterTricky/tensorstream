@@ -1,0 +1,88 @@
+# TensorStream - Build Requirements
+# Dependencies required for building TensorStream from source
+
+# =============================================================================
+# Core Build Tools
+# =============================================================================
+
+# Build system
+setuptools>=64
+wheel>=0.37.0
+
+# Python C++ binding generation
+pybind11[global]>=2.10.0
+
+# Fast parallel builds
+ninja>=1.10.0
+
+# =============================================================================
+# PyTorch (required at build time for extension compilation)
+# =============================================================================
+
+# PyTorch - required for building CUDA extensions
+torch>=1.12.0
+
+# =============================================================================
+# C++ Compilation Dependencies
+# =============================================================================
+
+# Note: These are system dependencies, not Python packages
+# Listed here for documentation purposes
+
+# Required system packages (install via package manager):
+# - GCC/Clang with C++14 support
+# - CUDA Toolkit 11.0+ (for GPU acceleration)
+# - CMake 3.18+ (for complex builds)
+# - Git (for version control)
+
+# Ubuntu/Debian:
+# sudo apt update
+# sudo apt install build-essential cmake git python3-dev
+
+# CentOS/RHEL/Fedora:
+# sudo yum groupinstall "Development Tools"
+# sudo yum install cmake git python3-devel
+
+# For CUDA support (optional but recommended):
+# - Download and install CUDA Toolkit from NVIDIA
+# - Ensure nvcc is in PATH
+# - Set CUDA_HOME environment variable
+
+# =============================================================================
+# Development Build Dependencies (optional)
+# =============================================================================
+
+# For building documentation
+# sphinx>=4.5.0
+# sphinx-rtd-theme>=1.0.0
+
+# For running tests during build
+# pytest>=6.2.0
+
+# =============================================================================
+# Build Environment Variables
+# =============================================================================
+
+# Required environment variables for CUDA builds:
+# export CUDA_HOME=/usr/local/cuda
+# export PATH=$CUDA_HOME/bin:$PATH
+# export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
+# Optional build configuration:
+# export TENSORSTREAM_BUILD_WITH_CUDA=1
+# export TENSORSTREAM_BUILD_WITH_GDS=1
+# export MAX_JOBS=4
+
+# =============================================================================
+# Build Commands
+# =============================================================================
+
+# Standard build:
+# pip install -r requirements-build.txt
+# python setup.py build_ext --inplace
+
+# Development build:
+# pip install -e .
+
+# Distribution build:
+# python setup.py sdist bdist_wheel

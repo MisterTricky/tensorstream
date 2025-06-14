@@ -1,0 +1,176 @@
+# TensorStream - High-performance PyTorch tensor streaming library
+# Complete requirements for development and production use
+
+# =============================================================================
+# Core Runtime Dependencies (Production)
+# =============================================================================
+
+# Deep Learning Framework - PyTorch with CUDA support
+torch>=1.12.0
+
+# Core numerical computing
+numpy>=1.21.0
+
+# System monitoring and resource management
+psutil>=5.8.0
+
+# Progress bars and user feedback
+tqdm>=4.62.0
+
+# =============================================================================
+# Build Dependencies (Required for C++/CUDA extensions)
+# =============================================================================
+
+# Python binding generation for C++/CUDA code
+pybind11[global]>=2.10.0
+
+# Fast parallel builds
+ninja>=1.10.0
+
+# =============================================================================
+# Development Dependencies
+# =============================================================================
+
+# Testing framework
+pytest>=6.2.0
+pytest-cov>=3.0.0
+pytest-xdist>=2.5.0
+pytest-mock>=3.6.0
+pytest-asyncio>=0.21.0
+
+# Code formatting and linting
+black>=22.0.0
+isort>=5.10.0
+flake8>=4.0.0
+mypy>=0.950
+
+# Pre-commit hooks for code quality
+pre-commit>=2.17.0
+
+# =============================================================================
+# Optional Dependencies for Enhanced Functionality
+# =============================================================================
+
+# For Hugging Face model support (used in tests and examples)
+transformers>=4.20.0
+
+# For tokenization (required by transformers)
+tokenizers>=0.13.0
+
+# For advanced tensor operations and optimizations
+accelerate>=0.20.0
+
+# For model serialization and checkpointing
+safetensors>=0.3.0
+
+# For configuration management and YAML support
+PyYAML>=6.0
+
+# For advanced logging and monitoring
+rich>=12.0.0
+
+# For async operations and concurrency
+aiofiles>=0.8.0
+
+# =============================================================================
+# Documentation Dependencies
+# =============================================================================
+
+# Documentation generation
+sphinx>=4.5.0
+sphinx-rtd-theme>=1.0.0
+sphinxcontrib-napoleon>=0.7
+
+# =============================================================================
+# Performance and Monitoring Dependencies
+# =============================================================================
+
+# Memory profiling and monitoring
+memory-profiler>=0.60.0
+
+# Performance benchmarking
+py-cpuinfo>=8.0.0
+
+# GPU monitoring (optional, requires NVIDIA GPU)
+# pynvml>=11.0.0
+
+# =============================================================================
+# File I/O and Compression
+# =============================================================================
+
+# Advanced compression support
+lz4>=4.0.0
+zstd>=1.5.0
+
+# =============================================================================
+# Type Checking and Validation
+# =============================================================================
+
+# Runtime type checking
+typeguard>=2.13.0
+
+# Pydantic for configuration validation
+pydantic>=1.10.0
+
+# =============================================================================
+# Distributed Computing Support (Optional)
+# =============================================================================
+
+# For distributed inference (optional)
+# ray>=2.0.0
+
+# =============================================================================
+# Notes
+# =============================================================================
+# 
+# Build Requirements:
+# - CUDA Toolkit 11.0+ (for GPU acceleration)
+# - GCC/Clang with C++14 support
+# - CMake 3.18+ (for complex builds)
+# 
+# Runtime Requirements:
+# - Linux x86_64 (primary platform)
+# - Python 3.8-3.11
+# - 8GB+ RAM recommended
+# - NVIDIA GPU with 4GB+ VRAM (optional but recommended)
+# 
+# Installation:
+# pip install -r requirements.txt
+# 
+# For production deployment (minimal dependencies):
+# pip install -r requirements-prod.txt
+
+# Development and Testing Dependencies (uncomment for development)
+# pytest>=6.2.0
+# pytest-cov>=3.0.0
+# pytest-xdist>=2.5.0
+# pytest-mock>=3.6.0
+
+# Code Formatting and Linting (uncomment for development)
+# black>=22.0.0
+# isort>=5.10.0
+# flake8>=4.0.0
+# mypy>=0.950
+# pre-commit>=2.17.0
+
+# Documentation (uncomment for documentation building)
+# sphinx>=4.5.0
+# sphinx-rtd-theme>=1.0.0
+# sphinxcontrib-napoleon>=0.7
+
+# Build Dependencies (only needed for building from source)
+# These are typically handled by pip/setuptools automatically
+# setuptools>=64
+# wheel
+# pybind11[global]
+# ninja
+
+# CUDA Dependencies (system-level, not pip installable)
+# Note: These must be installed separately
+# - NVIDIA CUDA Toolkit >= 11.0 (for CUDA backend)
+# - NVIDIA cuFile library (for GPUDirect Storage backend)
+# - Compatible NVIDIA GPU drivers
+
+# Platform-specific dependencies
+# Linux: Additional C++ build tools may be required
+# Windows: Microsoft Visual C++ Build Tools may be required

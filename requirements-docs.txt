@@ -1,0 +1,111 @@
+# TensorStream - Documentation Requirements
+# Dependencies for building and serving documentation
+
+# Include production requirements for API documentation
+-r requirements-prod.txt
+
+# =============================================================================
+# Core Documentation Tools
+# =============================================================================
+
+# Sphinx documentation generator
+sphinx>=4.5.0
+
+# Read the Docs theme
+sphinx-rtd-theme>=1.0.0
+
+# Napoleon extension for Google/NumPy style docstrings
+sphinxcontrib-napoleon>=0.7
+
+# =============================================================================
+# Sphinx Extensions
+# =============================================================================
+
+# Auto-generate API documentation from docstrings
+sphinx-autoapi>=1.8.0
+
+# Include code examples and test them
+sphinx-gallery>=0.10.0
+
+# Markdown support in Sphinx
+myst-parser>=0.17.0
+
+# Copy button for code blocks
+sphinx-copybutton>=0.5.0
+
+# Tabs for multi-language examples
+sphinx-tabs>=3.2.0
+
+# =============================================================================
+# Documentation Enhancement Tools
+# =============================================================================
+
+# Live reload for documentation development
+sphinx-autobuild>=2021.3.14
+
+# Better code highlighting
+pygments>=2.12.0
+
+# Jupyter notebook integration
+nbsphinx>=0.8.0
+jupyter>=1.0.0
+
+# =============================================================================
+# API Documentation Dependencies
+# =============================================================================
+
+# Required for generating API docs from code
+torch>=1.12.0
+numpy>=1.21.0
+
+# For documenting examples with real models
+transformers>=4.20.0
+
+# =============================================================================
+# Documentation Build Tools
+# =============================================================================
+
+# For generating diagrams and plots in docs
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# For better table formatting in docs
+tabulate>=0.8.0
+
+# =============================================================================
+# Quality Assurance for Documentation
+# =============================================================================
+
+# Check for broken links
+sphinx-linkcheck>=0.1.0
+
+# Spell checking for documentation
+pyspelling>=2.7.0
+
+# =============================================================================
+# Documentation Deployment
+# =============================================================================
+
+# For building documentation in CI/CD
+# sphinx-build (comes with sphinx)
+
+# For serving documentation locally
+# python -m http.server (built-in)
+
+# =============================================================================
+# Build Commands
+# =============================================================================
+
+# Install documentation dependencies:
+# pip install -r requirements-docs.txt
+
+# Build documentation:
+# cd docs
+# make html
+
+# Serve documentation locally:
+# cd docs/_build/html
+# python -m http.server 8000
+
+# Live reload during development:
+# sphinx-autobuild docs docs/_build/html

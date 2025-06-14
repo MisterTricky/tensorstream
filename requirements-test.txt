@@ -1,0 +1,73 @@
+# TensorStream - Testing Requirements
+# Dependencies specifically for running tests
+
+# Include production requirements
+-r requirements-prod.txt
+
+# =============================================================================
+# Core Testing Framework
+# =============================================================================
+
+# pytest and essential testing plugins
+pytest>=6.2.0
+pytest-cov>=3.0.0
+pytest-xdist>=2.5.0
+pytest-mock>=3.6.0
+pytest-asyncio>=0.21.0
+
+# =============================================================================
+# Model Dependencies for Integration Tests
+# =============================================================================
+
+# Hugging Face ecosystem for testing with real models
+transformers>=4.20.0
+tokenizers>=0.13.0
+
+# Model acceleration and optimization for testing
+accelerate>=0.20.0
+safetensors>=0.3.0
+
+# =============================================================================
+# Test Utilities
+# =============================================================================
+
+# Runtime type checking for test validation
+typeguard>=2.13.0
+
+# Configuration validation for test configs
+pydantic>=1.10.0
+
+# YAML support for test configurations
+PyYAML>=6.0
+
+# Enhanced output for test results
+rich>=12.0.0
+
+# =============================================================================
+# Performance Testing
+# =============================================================================
+
+# Memory profiling for memory-related tests
+memory-profiler>=0.60.0
+
+# System information for environment validation
+py-cpuinfo>=8.0.0
+
+# =============================================================================
+# File I/O Testing
+# =============================================================================
+
+# Compression libraries for I/O tests
+lz4>=4.0.0
+zstd>=1.5.0
+
+# Async file operations for async tests
+aiofiles>=0.8.0
+
+# =============================================================================
+# Build Dependencies (for extension testing)
+# =============================================================================
+
+# Required for building C++/CUDA extensions in test environments
+pybind11[global]>=2.10.0
+ninja>=1.10.0
